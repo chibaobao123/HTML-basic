@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">	
+		<title>"change" event</title>
+	</head>
+	<body>
+		<label>Choose age:</label>
+		<select id="number-choose">
+			<option>0</option>
+			<option>21</option>
+			<option>23</option>
+			<option>24</option>
+		</select>
+		<table id="table-list"></table>
+		<script type="text/javascript">
+			var students = [
+				{name:'bao', age:21},
+				{name:'phương', age:23},
+				{name:'nghi', age:24},
+				{name:'anh', age:21},
+			]
+			var ageFilter =  document.getElementById("number-choose")
+			ageFilter.addEventListener('change',onAgeFilterChange)
+			function onAgeFilterChange(){
+				//get corrent value of slect
+				var selectAge = parseInt(ageFilter.value)
+				//filter the student list by the select value
+				var studentsOfSelect = students.filter(function(student) {
+					if(selectAge === 0){
+						return students;
+					}else{
+						return student.age === selectAge;
+					}
+				});
+				//render
+				render(studentsOfSelect)
+			}
+			function render(students){
+				var studentTable = document.getElementById("table-list");
+				var content = students.map(function(student){
+					return '<tr><td>'+ student.name + '</td><td>' + student.age + '</td></tr>'
+				});
+				studentTable.innerHTML = content.join('')
+			}
+			render(students);
+		</script>
+	</body>
+</html>

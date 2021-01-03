@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>LESSON 13</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<input type="text" id ="add-value" class="fofo" />
+		<button id="addb"  >add</button>
+		<ul id= "list-item">
+		</ul>
+		<script type="text/javascript">
+		var storageKey = 'todoList';
+		var dataString = localStorage.getItem(storageKey)
+		var list ;
+			if (dataString) {
+				list = JSON.parse(dataString);
+			} else {
+				list = []
+			}
+		
+		
+		var addb = document.getElementById("addb");
+		// add.onclick = addItem;
+		addb.addEventListener('click',addItem);
+		addb.addEventListener('click',function(){
+			console.log('yo yo')
+		});// anonymous function
+		//listener {'click',[addItem, function]}
+		//addb triggers a click event 
+		//a click event is trigger
+		//event listener
+		function addItem(){
+			//get value of input
+			var input = document.getElementById("add-value");
+			var newItem = input.value;
+			//add to list array
+			list.push(newItem)
+			//re-render
+			render();
+			//clear input
+			input.value ='';
+			//store data
+			localStorage.setItem(storageKey,JSON.stringify(list))
+		};
+		function render(){
+			var htmlList= document.getElementById("list-item");
+			var content= list.map(function(item){
+				return '<li>' + item + '</li>';
+			});
+			htmlList.innerHTML = content.join('');
+		};
+		render();
+		</script>
+	</body>
+</html>

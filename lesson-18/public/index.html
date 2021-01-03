@@ -1,0 +1,259 @@
+<!-- firebase init -->
+<!-- firebase serve -->
+<!-- firebase deploy -->
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <title>SALA APARTMENT</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script type="text/javascript" src="./index.js"></script>
+  </head>
+  <body>
+    <HEADER><p>Welcome to Sala Apartment</p></HEADER>
+    <div class="tab">   
+      <button class="tablink" onclick="openFunction(event,'Home')"><i></i>home</button>
+      <button class="tablink" onclick="openFunction(event,'officer')"><i></i>officer</button>
+      <button class="tablink" onclick="openFunction(event,'apartment')"><i></i>apartment</button>
+      <button class="tablink" onclick="openFunction(event,'Service-costs')"><i></i>Service costs</button>
+    </div>
+
+    <!----------home---------->
+    <div id="Home" class="tabcontent">
+          <div class="right">
+                  <div class="caption">
+                      <h1>
+                        <strong>Câu chuyện thương hiệu</strong>                     
+                      </h1>
+                      <img class="img-responsive-line" src="./ava.jpg" alt="hình tượng trưng" title="hình tượng trưng"       style="width:300px; height: 300px;">
+                      </style>
+                  </div>
+                  <div class="des">
+                    
+                  </style>
+                      Nếu ví cuộc đời như một bản nhạc, với những sắc độ thăng trầm, thì The Opera Residence là câu chuyện về một giai điệu tuyệt đẹp, nơi giao hòa giữa thiên nhiên bất tận, thời gian vô hạn và con người hữu hạn – nơi những âm điệu du dương hòa quyện vào nhau và trải dài tha thiết.
+                      <br>
+                      Giữa giai điệu bất tận của cuộc đời ấy, con người xuất hiện như một nốt nhạc, tạo nên những vũ khúc thăng hoa, du dương, với những ô nhạc trầm bổng. Đó là giai điệu của cảm xúc và trải nghiệm sẽ được lưu giữ mãi tại The Opera Residence cho bạn và những thế hệ mai sau.
+                  </div>
+          </div>
+    </div>
+
+    <!----------Officer---------->
+    <div id="Officer" class="tabcontent">
+      
+    </div>
+
+    <!----------apartment---------->
+    <div id="apartment" class="tabcontent">
+      <h3>Danh sách các tầng</h3>
+      <div class="tabbus">
+        <button class="tablink" onclick="openFloor(event, 'floor1')">Tầng 1</button>
+        <button class="tablink" onclick="openFloor(event, 'floor2')">Tầng 2</button>
+        <button class="tablink" onclick="openFloor(event, 'floor3')">Tầng 3</button>
+        <button class="tablink" onclick="openFloor(event, 'floor4')">Tầng 4</button>
+      </div>
+
+    <!----------floor1---------->
+      <div id="floor1" class="tabcontents">
+
+        <div class="tabbus">
+          <button class="tablink" onclick="openFloor(event, 'room1')">Phòng 1</button>
+          <button class="tablink" onclick="openFloor(event, 'room2')">Phòng 2</button>
+          <button class="tablink" onclick="openFloor(event, 'room3')">Phòng 3</button>
+          <button class="tablink" onclick="openFloor(event, 'room4')">Phòng 4</button>
+          
+        </div>
+    </div>
+    <!---------------------------room1------------------------------>
+    <div id="room1" class="tabcontents">
+
+      <?php
+            include './tang1_db.php';
+            $result = mysqli_query($con, "SELECT * FROM room1");
+            mysqli_close($con);
+          ?>
+            
+            <table id="user-listing" style="width: 700px;">
+                <tr>
+                    <th>id</th>
+                    <th>Ảnh</th>
+                    <th>Name</th>
+                    <th>Birth</th>
+                    <th>Sex</th>
+                    <th>CMND</th>
+                    <th>Phone</th>
+                    <th>Country</th>
+                    <th>Arrival</th>
+                    <th>Depature</th>
+                  <th>Sửa</th>
+          <th>Xóa</th>
+                </tr>
+                <?php
+                while ($row = mysqli_fetch_array($result)) {
+        
+                    ?>
+                    <tr>
+                        <td><?= $row['id'] ?></td>
+                        <td><?= $row['Ảnh'] ?></td>
+                        <td><?= $row['Name'] ?></td>
+                        <td><?= $row['Birth'] ?></td>
+                        <td><?= $row['Sex'] ?></td>
+                        <td><?= $row['CMND'] ?></td>
+                        <td><?= $row['Phone'] ?></td>
+                        <td><?= $row['Country'] ?></td>
+                        <td><?= $row['Arrival'] ?></td>
+                        <td><?= $row['Depature'] ?></td> 
+                        <td><a href="./edit_user.php?id=<?= $row['id'] ?>">Sữa</a></td>
+                        <td><a href="./delete_user.php?id=<?= $row['id']?>">Xóa</a></td>
+                    </tr>
+                <?php } ?>
+            </table>
+        
+      
+    </div>
+    <!---------------------------------------------room2----------------->
+    <div id="room2" class="tabcontents">
+
+      <?php
+            include './tang1_db.php';
+            $result = mysqli_query($con, "SELECT * FROM room2");
+            mysqli_close($con);
+            ?>
+            
+            <table id="user-listing" style="width: 700px;">
+                <tr>
+                    <th>id</th>
+                    <th>Ảnh</th>
+                    <th>Name</th>
+                    <th>Birth</th>
+                    <th>Sex</th>
+                    <th>CMND</th>
+                    <th>Phone</th>
+                    <th>Country</th>
+                    <th>Arrival</th>
+                    <th>Depature</th>
+                    <th>Sửa</th>
+                    <th>Xóa</th>
+                </tr>
+                <?php
+                while ($row = mysqli_fetch_array($result)) {
+        
+                    ?>
+                    <tr>
+                        <td><?= $row['id'] ?></td>
+                        <td><?= $row['Ảnh'] ?></td>
+                        <td><?= $row['Name'] ?></td>
+                        <td><?= $row['Birth'] ?></td>
+                        <td><?= $row['Sex'] ?></td>
+                        <td><?= $row['CMND'] ?></td>
+                        <td><?= $row['Phone'] ?></td>
+                        <td><?= $row['Country'] ?></td>
+                        <td><?= $row['Arrival'] ?></td>
+                        <td><?= $row['Depature'] ?></td> 
+                        <td><a href="./edit_user.php?id=<?= $row['id'] ?>">Sữa</a></td>
+                        <td><a href="./delete_user.php?id=<?= $row['id']?>">Xóa</a></td>
+                    </tr>
+                <?php } ?>
+            </table>
+                
+            
+        </div>
+<!--------------------------------room3----------------->
+    <div id="room3" class="tabcontents">
+
+      <?php
+            include './tang1_db.php';
+            $result = mysqli_query($con, "SELECT * FROM room3");
+            mysqli_close($con);
+            ?>
+            
+            <table id="user-listing" style="width: 700px;">
+                <tr>
+                    <th>id</th>
+                    <th>Ảnh</th>
+                    <th>Name</th>
+                    <th>Birth</th>
+                    <th>Sex</th>
+                    <th>CMND</th>
+                    <th>Phone</th>
+                    <th>Country</th>
+                    <th>Arrival</th>
+                    <th>Depature</th>
+                    <th>Sửa</th>
+                    <th>Xóa</th>
+                </tr>
+                <?php
+                while ($row = mysqli_fetch_array($result)) {
+        
+                    ?>
+                    <tr>
+                        <td><?= $row['id'] ?></td>
+                        <td><?= $row['Ảnh'] ?></td>
+                        <td><?= $row['Name'] ?></td>
+                        <td><?= $row['Birth'] ?></td>
+                        <td><?= $row['Sex'] ?></td>
+                        <td><?= $row['CMND'] ?></td>
+                        <td><?= $row['Phone'] ?></td>
+                        <td><?= $row['Country'] ?></td>
+                        <td><?= $row['Arrival'] ?></td>
+                        <td><?= $row['Depature'] ?></td> 
+                        <td><a href="./edit_user.php?id=<?= $row['id'] ?>">Sữa</a></td>
+                        <td><a href="./delete_user.php?id=<?= $row['id']?>">Xóa</a></td>
+                    </tr>
+                <?php } ?>
+            </table>
+                
+            
+        </div>
+<!----------------------------room4------------------------------>
+    <div id="room4" class="tabcontents">
+
+      <?php
+            include './tang1_db.php';
+            $result = mysqli_query($con, "SELECT * FROM room4");
+            mysqli_close($con);
+            ?>
+            
+            <table id="user-listing" style="width: 700px;">
+                <tr>
+                    <th>id</th>
+                    <th>Ảnh</th>
+                    <th>Name</th>
+                    <th>Birth</th>
+                    <th>Sex</th>
+                    <th>CMND</th>
+                    <th>Phone</th>
+                    <th>Country</th>
+                    <th>Arrival</th>
+                    <th>Depature</th>
+                    <th>Sửa</th>
+                    <th>Xóa</th>
+                </tr>
+                <?php
+                while ($row = mysqli_fetch_array($result)) {
+        
+                    ?>
+                    <tr>
+                        <td><?= $row['id'] ?></td>
+                        <td><?= $row['Ảnh'] ?></td>
+                        <td><?= $row['Name'] ?></td>
+                        <td><?= $row['Birth'] ?></td>
+                        <td><?= $row['Sex'] ?></td>
+                        <td><?= $row['CMND'] ?></td>
+                        <td><?= $row['Phone'] ?></td>
+                        <td><?= $row['Country'] ?></td>
+                        <td><?= $row['Arrival'] ?></td>
+                        <td><?= $row['Depature'] ?></td>
+                        <td><a href="./edit_user.php?id=<?= $row['id'] ?>">Sữa</a></td>
+                        <td><a href="./delete_user.php?id=<?= $row['id']?>">Xóa</a></td>
+                    </tr>
+                <?php } ?>
+            </table>
+                
+            
+        </div>
+
+
+  </body>
+</html>

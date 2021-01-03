@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>LESSON 16</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<input type="text" id ="add-value" class="fofo" />
+		<button id="addb" >add</button>
+		<ul id= "list-item">
+		</ul>
+		<script type="text/javascript">
+		var storageKey = 'listDo'
+		var storageValue = localStorage.getItem(storageKey);
+		var listDo;
+		if(storageValue) {
+			listDo = JSON.parse(storageValue);
+		}else{
+			listDo = [];
+		}
+
+		var addb = document.getElementById("addb");
+		var input = document.getElementById("add-value");
+		
+		addb.addEventListener('click',addItem);		
+		input.value = sessionStorage.getItem('Draft');
+		input.addEventListener('change',updateSessionStorage);
+
+		function updateSessionStorage(){
+			 sessionStorage.setItem('Draft', input.value);
+		}
+
+		function addItem(){
+			var newItem = input.value;
+			listDo.push(newItem);
+			render();
+			input.value ='';
+			localStorage.setItem(storageKey,JSON.stringify(listDo))
+			updateSessionStorage = '';
+		}
+
+		function render(){
+			var htmlList= document.getElementById("list-item");
+			var content= listDo.map(function(item){
+				return '<li>' + item + '</li>';
+			});
+			htmlList.innerHTML = content.join('');
+		};
+		render();
+
+		</script>
+	</body>
+</html>

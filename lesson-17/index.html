@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>LESSON 16</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<input type="text" id ="add-value" class="fofo" />
+		<button id="addb" >add</button>
+		<ul id= "list-item">
+		</ul>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script type="text/javascript">
+		var url = 'http://localhost:9081/post';
+
+		axios.get(url).then(function(res){
+			var items = res.data;
+			render(items)
+		})
+
+		var addb = document.getElementById("addb");
+		addb.addEventListener('click',addItem);		
+
+		function addItem(){
+			var input = document.getElementById("add-value");
+			var newItem = input.value;
+			listDo.push(newItem);
+			render();
+			input.value ='';
+			localStorage.setItem(storageKey,JSON.stringify(listDo))
+			updateSessionStorage = '';
+		}
+
+		function render(items){
+			var htmlList= document.getElementById("list-item");
+			var content= items.map(function(item){
+				return '<li>'+ item.content + '</li>';
+			});
+			htmlList.innerHTML = content.join('');
+		};
+
+		</script>
+	</body>
+</html>
